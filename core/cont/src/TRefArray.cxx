@@ -187,6 +187,7 @@ Bool_t TRefArray::GetObjectUID(Int_t &uid, TObject *obj, const char *methodname)
             // The container is empty, we can switch the ProcessID.
             fPID = TProcessID::GetProcessWithUID(obj);
             valid = kTRUE;
+            uid = obj->GetUniqueID();
             if (gDebug > 3) 
                Info(TString::Format("TRefArray::%s",methodname),"The ProcessID for the %p has been switched to %s/%s:%d.",
                     this,fPID->GetName(),fPID->GetTitle(),fPID->GetUniqueID()); 

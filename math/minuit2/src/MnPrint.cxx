@@ -56,7 +56,7 @@ void MnPrint::PrintState(std::ostream & os, const MinimumState & state, const ch
    const int width = PRECISION+3;
    os << " - FCN = " <<  std::setw(width) << state.Fval();
    os.precision(pr);
-   os << " Edm = " <<  std::setw(12) << state.Edm() << " NCalls = " << std::setw(6) << state.NFcn();         
+   os << " Edm = " <<  std::setw(12) << state.Edm() << " NCalls = " << std::setw(6) << state.NFcn() << " Dcovar = " << std::setw(6) << state.Error().Dcovar() ;
    os << std::endl;
 }
 

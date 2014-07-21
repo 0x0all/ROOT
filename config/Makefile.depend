@@ -499,7 +499,7 @@ ALIENLIBEXTRA           = -Llib -lXMLIO -lNetx -lTree -lProof -lProofPlayer \
                           -lNet -lRIO
 ROOFITCORELIBEXTRA      = -Llib -lHist -lGraf -lMatrix -lTree -lMinuit -lRIO \
                           -lMathCore -lFoam
-ROOFITLIBEXTRA          = -Llib -lRooFitCore -lTree -lRIO -lMatrix -lMathCore
+ROOFITLIBEXTRA          = -Llib -lRooFitCore -lTree -lRIO -lMatrix -lMathCore -lHist
 ROOSTATSLIBEXTRA        = -Llib -lRooFit -lRooFitCore -lTree -lRIO -lHist \
                           -lMatrix -lMathCore -lMinuit -lFoam -lGraf -lGpad
 HISTFACTORYLIBEXTRA     = -Llib -lRooFit -lRooFitCore -lTree -lRIO -lHist \

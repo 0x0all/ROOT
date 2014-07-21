@@ -113,6 +113,12 @@
 #pragma link C++ class RooCFunction4Binding<Double_t,Double_t,Double_t,Double_t,Bool_t>+ ;
 #pragma link C++ class RooCFunction4PdfBinding<Double_t,Double_t,Double_t,Double_t,Bool_t>+ ;
 
+#pragma link C++ class RooParamKeysPdf+ ;
+#pragma link C++ class RooParamKeysPdfDev+ ;
+#pragma link C++ class RooStarMomentMorph+ ;
+#pragma link C++ class AsymmBreitWigner+ ;
+#pragma link C++ class PearsonTypeIV+ ;
+
 //#ifdef USE_FOR_AUTLOADING
 //#pragma link C++ class RooFit ;
 //#else

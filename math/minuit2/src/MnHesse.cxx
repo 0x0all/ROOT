@@ -18,6 +18,7 @@
 #include "Minuit2/MinimumState.h"
 #include "Minuit2/VariableMetricEDMEstimator.h"
 #include "Minuit2/FunctionMinimum.h"
+#include "TMatrixDSym.h"
 
 //#define DEBUG
 
@@ -31,6 +32,14 @@ namespace ROOT {
 
    namespace Minuit2 {
 
+TMatrixDSym* MnHesse::_hessian = 0 ;
+
+void MnHesse::clearLastHessian() {
+  if (_hessian) {
+    delete _hessian ;
+    _hessian = 0 ;
+  }
+}
 
 MnUserParameterState MnHesse::operator()(const FCNBase& fcn, const std::vector<double>& par, const std::vector<double>& err, unsigned int maxcalls) const { 
    // interface from vector of params and errors
@@ -280,6 +289,15 @@ L30:
 #ifdef DEBUG
    std::cout << "Original error matrix " << vhmat << std::endl;
 #endif
+
+   // wve save Hessian here for later use
+   if (_hessian) delete _hessian ;
+   _hessian = new TMatrixDSym(vhmat.Nrow()) ;
+   for (unsigned int i=0 ; i<vhmat.Nrow() ; i++) {
+     for (unsigned int j=0 ; j<vhmat.Nrow() ; j++) {
+       (*_hessian)(i,j) = vhmat(i,j) ;
+     }
+   }
 
    MinimumError tmpErr = MnPosDef()(MinimumError(vhmat,1.), prec);
 

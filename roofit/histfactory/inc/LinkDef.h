@@ -41,6 +41,9 @@
 #pragma link C++ class RooStats::HistFactory::StatErrorConfig+ ;
 #pragma link C++ class RooStats::HistFactory::PreprocessFunction+ ;
 
+#pragma link C++ class RooStats::HistFactory::RooBSplineBases+ ;
+#pragma link C++ class RooStats::HistFactory::RooBSpline+ ;
+
 #pragma link C++ class std::vector< RooStats::HistFactory::Channel >+ ;
 #pragma link C++ class std::vector< RooStats::HistFactory::Sample >+ ;
 #pragma link C++ class std::vector< RooStats::HistFactory::HistRef >+ ;

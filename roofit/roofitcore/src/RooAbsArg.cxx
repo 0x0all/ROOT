@@ -1253,7 +1253,7 @@ Int_t RooAbsArg::numProxies() const
 {
   // Return the number of registered proxies.
 
-  return _proxyList.GetEntries() ;
+  return _proxyList.GetEntriesFast() ;
 }
 
 
@@ -2409,7 +2409,9 @@ void RooAbsArg::ioStreamerPass2()
   if (iter != _ioEvoList.end()) {
 
     // Transfer contents of saved TRefArray to RooRefArray now
-    for (int i=0 ; i < iter->second->GetEntries() ; i++) {
+    if (!_proxyList.GetEntriesFast())
+      _proxyList.Expand(iter->second->GetEntriesFast());
+    for (int i=0 ; i < iter->second->GetEntriesFast() ; i++) {
       _proxyList.Add(iter->second->At(i)) ;
     }
     // Delete TRefArray and remove from list
@@ -2437,7 +2439,9 @@ void RooAbsArg::ioStreamerPass2Finalize()
   while (iter != _ioEvoList.end()) {
     
     // Transfer contents of saved TRefArray to RooRefArray now
-    for (int i=0 ; i < iter->second->GetEntries() ; i++) {
+    if (!iter->first->_proxyList.GetEntriesFast())
+      iter->first->_proxyList.Expand(iter->second->GetEntriesFast());
+    for (int i=0 ; i < iter->second->GetEntriesFast() ; i++) {
       iter->first->_proxyList.Add(iter->second->At(i)) ;
     }
 
@@ -2478,7 +2482,7 @@ void RooRefArray::Streamer(TBuffer &R__b)
      R__c = R__b.WriteVersion(RooRefArray::IsA(), kTRUE);
 
      // Make a temporary refArray and write that to the streamer
-     TRefArray refArray ;
+     TRefArray refArray(GetEntriesFast());
      TIterator* iter = MakeIterator() ; 
      TObject* tmpObj ; while ((tmpObj = iter->Next())) { 
        refArray.Add(tmpObj) ; 

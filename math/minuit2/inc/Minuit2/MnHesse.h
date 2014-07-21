@@ -15,6 +15,8 @@
 
 #include <vector>
 
+#include "TMatrixDSymfwd.h"
+
 namespace ROOT {
 
    namespace Minuit2 {
@@ -87,7 +89,12 @@ public:
    double Tolerstp() const {return fStrategy.HessianStepTolerance();}
    double TolerG2() const {return fStrategy.HessianG2Tolerance();}
 
+   static TMatrixDSym* lastHessian() { return _hessian ; }
+   static void clearLastHessian() ;
+
 private:
+
+   static TMatrixDSym* _hessian ;
 
    MnStrategy fStrategy;
 };
